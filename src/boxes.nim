@@ -88,11 +88,11 @@ proc makeBox(args: seq[NimNode]): NimNode =
   if "wh" in d and ("w" in d or "h" in d): error("duplicated size property", d["wh"][1])
   if "xy" in d and ("x" in d or "y" in d): error("duplicated coordinate property", d["xy"][1])
 
-  if ("left" in d xor "right" in d) and ("w" notin d): error("missing width", args[0])
-  if ("top" in d xor "bottom" in d) and ("h" notin d): error("missing height", args[0])
-  if ("center" in d) and ("w" notin d or "h" notin d): error("missing size", args[0])
-  if ("centerX" in d) and ("w" notin d): error("missing width", args[0])
-  if ("centerY" in d) and ("h" notin d): error("missing height", args[0])
+  if ("left" in d xor "right" in d) and ("w" notin d) and ("wh" notin d): error("missing width", args[0])
+  if ("top" in d xor "bottom" in d) and ("h" notin d) and ("wh" notin d): error("missing height", args[0])
+  if ("center" in d) and ("w" notin d or "h" notin d) and ("wh" notin d): error("missing size", args[0])
+  if ("centerX" in d) and ("w" notin d) and ("wh" notin d): error("missing width", args[0])
+  if ("centerY" in d) and ("h" notin d) and ("wh" notin d): error("missing height", args[0])
 
   if d.contains2(coordinateX): error("duplicated x property", args[0])
   if d.contains2(coordinateY): error("duplicated y property", args[0])
