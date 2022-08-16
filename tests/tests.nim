@@ -36,7 +36,7 @@ test "window":
     ctx.fillStyle = rgba(64, 64, 255, 255)
     ctx.fillRect b.box(centerY = b.center + 100, left = b.right + 2.5, w = 5, h = 50)
     
-    window.drawImage image.data
+    window.drawImage image.data.toBgrx, ivec2(image.width.int32, image.height.int32)
 
   window.onKeyup = proc(e: KeyEvent) =
     if e.key == Key.escape:

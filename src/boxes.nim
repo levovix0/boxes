@@ -104,7 +104,8 @@ proc makeBox(args: seq[NimNode]): NimNode =
   buildAst: blockStmt empty(), stmtList do:
     letSection:
       identDefs:
-        ident"box"
+        pragmaExpr ident"box":
+          pragma ident"used"  # todo: do not declare box, if it is not used
         empty()
         box
 

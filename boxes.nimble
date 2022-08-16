@@ -5,7 +5,8 @@ license       = "MIT"
 srcDir        = "src"
 
 requires "nim >= 1.6.6"
-requires "vmath", "bumpy", "fusion"
+requires "bumpy" #, "vmath"
+requires "fusion"
 
 task test, "run tests":  # needed because tests uses libraries, that is not dependencies
   exec "nim c --hints:off -r tests/tests"
