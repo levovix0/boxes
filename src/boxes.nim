@@ -118,11 +118,15 @@ proc makeBox(args: seq[NimNode]): NimNode =
         identDefs:
           xs
           empty()
-          call ident"float32", dotExpr(ident"xy", ident"x")
+          call bindSym"+":
+            dotExpr(ident"box", ident"x")
+            call ident"float32", dotExpr(ident"xy", ident"x")
         identDefs:
           ys
           empty()
-          call ident"float32", dotExpr(ident"xy", ident"y")
+          call bindSym"+":
+            dotExpr(ident"box", ident"y")
+            call ident"float32", dotExpr(ident"xy", ident"y")
 
     if "wh" in d:
       letSection:
@@ -144,14 +148,18 @@ proc makeBox(args: seq[NimNode]): NimNode =
         identDefs:
           xs
           empty()
-          d["x"].getX
+          call bindSym"+":
+            dotExpr(ident"box", ident"x")
+            d["x"].getX
     
     if "y" in d:
       letSection:
         identDefs:
           ys
           empty()
-          d["y"].getY
+          call bindSym"+":
+            dotExpr(ident"box", ident"y")
+            d["y"].getY
     
     if "w" in d:
       letSection:
